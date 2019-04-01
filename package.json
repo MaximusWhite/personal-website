@@ -12,6 +12,8 @@
   "author": "Mikhail <mkorchevskiy@ryerson.ca>",
   "license": "MIT",
   "scripts": {
-    "dev": "node src/index.js"
+    "dev": "node src/index.js",
+    "build-prod-win": "(cd .\\client) ; (yarn run build) ; (cp.\\build ..\\dist\\ -r) ; (cd ..) ; (cp .\\src .\\dist\\ -r)",
+    "build-prod": "cd ./client && yarn run build && cp ./build/ ../dist/ -r && cd .. && cp ./src/ ./dist/ -r"
   }
 }
