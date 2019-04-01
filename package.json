@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.16.4"
+  },
+  "name": "mikhailkorchevskiy.ca",
+  "version": "0.0.1",
+  "description": "Personal website",
+  "main": "index.js",
+  "repository": "git@github.com:MaximusWhite/personal-website.git",
+  "author": "Mikhail <mkorchevskiy@ryerson.ca>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "node src/index.js"
+  }
+}
