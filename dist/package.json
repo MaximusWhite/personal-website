@@ -12,9 +12,11 @@
   "author": "Mikhail <mkorchevskiy@ryerson.ca>",
   "license": "MIT",
   "scripts": {
+    "setup": "cd ./client && yarn install && cd .. && yarn install",
     "dev": "node src/index.js",
+    "prod": "pm2 start website.config.js",
     "build-prod-win": "(cd .\\client) ; (yarn run build) ; (cp.\\build ..\\dist\\ -r) ; (cd ..) ; (cp .\\src .\\dist\\ -r)",
     "build-prod": "cd ./client && yarn run build && cp ./build/ ../dist/ -r && cd .. && cp ./src/ ./dist/ -r",
-    "prep-package": "cd ./client && cp ./public/ ../dist/client/ -r && cp ./src/ ../dist/client/ -r && cp ./package.json ../dist/client && cd .. && cp ./src/ ./dist/ -r && cp ./package.json ./dist/"
+    "prep-package": "cd ./client && cp ./public/ ../dist/client/ -r && cp ./src/ ../dist/client/ -r && cp ./package.json ../dist/client && cd .. && cp ./src/ ./dist/ -r && cp ./package.json ./dist/ && cp ./website.config.js ./dist/"
   }
 }
