@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { BrowserRouter } from 'react-router-dom';
+// import axios from 'axios';
+import routes from './routes';
 import MainPage from './main_page/main_page';
 
 class App extends Component {
@@ -9,7 +11,11 @@ class App extends Component {
   }
 
   render() {
-    return <MainPage />;
+    return (
+    <BrowserRouter>
+      {routes}
+    </BrowserRouter>
+    );
   }
 }
 
