@@ -12,7 +12,7 @@ class Header extends React.Component {
     render() {
       return ( 
             <div>
-            <Navbar bg="light" expand="lg" sticky="top">
+            <Navbar bg="dark" variant="dark" expand="lg" sticky="top">
             <LinkContainer to={'/'}>  
                 <Navbar.Brand>Mikhail Korchevskiy</Navbar.Brand>
             </LinkContainer>
@@ -22,10 +22,20 @@ class Header extends React.Component {
                 <LinkContainer to={'/about_me'}>
                     <Nav.Link>About me</Nav.Link>
                 </LinkContainer>
-                <Nav.Link href="#portfolio">Portfolio</Nav.Link>
-                <Nav.Link href="#resume">Resume</Nav.Link>
+                <LinkContainer to={'/resume'}>
+                    <Nav.Link>Resume</Nav.Link>
+                </LinkContainer>
+                <LinkContainer to={'/portfolio'}>
+                    <Nav.Link>Portfolio</Nav.Link>
+                </LinkContainer>
+                <LinkContainer to={'/thoughts'}>
+                    <Nav.Link>Thoughts</Nav.Link>
+                </LinkContainer>
+                <LinkContainer to={'/bits'}>
+                    <Nav.Link>A bit of everything</Nav.Link>
+                </LinkContainer>
                 </Nav>
-                <div className="right">Work In Progress!</div>
+                <Nav.Link className="right">Work In Progress!</Nav.Link>
             </Navbar.Collapse>
             </Navbar>
             </div>

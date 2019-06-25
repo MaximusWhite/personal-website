@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import './style.css';
 import Header from '../common/header';
 
-const banner = require('../img/banner2.jpg');
+const banner = require('./img/banner2.jpg');
 //import banner_str from '../../public/img/banner.jpg';
 
 class MainPage extends React.Component {
