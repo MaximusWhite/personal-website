@@ -2,6 +2,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.16.4",
+    "nodemon": "^2.0.2",
     "path": "^0.12.7"
   },
   "name": "mikhailkorchevskiy.ca",
@@ -13,7 +14,7 @@
   "license": "MIT",
   "scripts": {
     "setup": "cd ./client && yarn install && cd .. && yarn install",
-    "dev": "node src/index.js",
+    "dev": "nodemon src/index.js",
     "prod": "pm2 start website.config.js",
     "build-prod-win": "(cd .\\client) ; (yarn run build) ; (cp.\\build ..\\dist\\ -r) ; (cd ..) ; (cp .\\src .\\dist\\ -r)",
     "build-prod": "cd ./client && yarn run build && cp ./build ../dist/ -r && cd .. && cp ./src/ ./dist/ -r",

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Image } from 'react-bootstrap';
 import './style.css';
 import Header from '../common/header';
 
@@ -12,8 +11,7 @@ class Bits extends React.Component {
     render() {
       return (
         <mp>   
-            <Image src={require('./img/banner.png')} width='100%' max-height='20%' className='img-responsive'/>
-            <Header />
+            <Header banner='bits' />
             <h1>BITS</h1>
         </mp>
       );

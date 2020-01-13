@@ -3,23 +3,21 @@ import { Navbar, Form, Button, Nav, NavDropdown, FormControl, Image, Col} from '
 import { Link } from 'react-router-dom';
 import './style.css';
 import Header from '../common/header';
-
-const banner = require('./img/banner2.jpg');
-//import banner_str from '../../public/img/banner.jpg';
+import MineSweeper from '../minesweeper/minesweeper';
 
 class MainPage extends React.Component {
-
     constructor(props) {
         super();
-
     }
     
     render() {
       return (
-        <mp>   
-            <Image src={banner} width='100%' max-height='20%' className='img-responsive'/>
-            <Header />
-        </mp>
+        <div>
+          <mp>   
+              <Header banner={'main_page'} />
+          </mp>
+          <MineSweeper height={10} width={20} mines={20} />
+        </div>
       );
     }
   }

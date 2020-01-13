@@ -1,0 +1,172 @@
+mp {
+    font-family: 'Bree Serif', serif;
+}
+
+button:focus {
+    outline: none;
+}
+
+.row-no-bottom {
+    padding: 0px !important;
+}
+
+.mine-closed
+{   
+    font-size: 1.1em;
+    font-weight: bold;
+    background-color: #68889E;
+    color:#FFF;
+    border-color: #2F3E48;
+    min-width: 4vw;
+    min-height: 4vw;
+    max-width: 4vw;
+    max-height: 4vw;
+}
+
+.mine-opened-mine
+{   
+    font-size: 1.1em;
+    font-weight: bold;
+    background-color: rgb(153, 37, 85);
+    color:#FFF;
+    border-color: rgb(94, 2, 2);
+    min-width: 4vw;
+    min-height: 4vw;
+    max-width: 4vw;
+    max-height: 4vw;
+}
+
+.mine-opened-empty
+{   
+    font-size: 1.1em;
+    font-weight: bold;
+    background-color: rgb(151, 168, 180);
+    color:#FFF;
+    border-color: #2F3E48;
+    min-width: 4vw;
+    min-height: 4vw;
+    max-width: 4vw;
+    max-height: 4vw;
+}
+
+.mine-opened-1
+{
+    font-size: 1.1em;
+    font-weight: bold; 
+    background-color: rgb(151, 168, 180);
+    color:rgb(69, 111, 248);
+    border-color: #2F3E48;
+    min-width: 4vw;
+    min-height: 4vw;
+    max-width: 4vw;
+    max-height: 4vw;
+}
+
+.mine-opened-2
+{   
+    font-size: 1.1em;
+    font-weight: bold; 
+    background-color: rgb(151, 168, 180);
+    color:rgb(23, 156, 83);
+    border-color: #2F3E48;
+    min-width: 4vw;
+    min-height: 4vw;
+    max-width: 4vw;
+    max-height: 4vw;
+}
+
+.mine-opened-3
+{   
+    font-size: 1.1em;
+    font-weight: bold; 
+    background-color: rgb(151, 168, 180);
+    color:rgb(194, 0, 0);
+    border-color: #2F3E48;
+    min-width: 4vw;
+    min-height: 4vw;
+    max-width: 4vw;
+    max-height: 4vw;
+}
+
+.mine-opened-4
+{   
+    font-size: 1.1em;
+    font-weight: bold; 
+    background-color: rgb(151, 168, 180);
+    color:rgb(57, 3, 128);
+    border-color: #2F3E48;
+    min-width: 4vw;
+    min-height: 4vw;
+    max-width: 4vw;
+    max-height: 4vw;
+}
+
+.mine-opened-5
+{   
+    font-size: 1.1em;
+    font-weight: bold; 
+    background-color: rgb(151, 168, 180);
+    color:rgb(105, 6, 6);
+    border-color: #2F3E48;
+    min-width: 4vw;
+    min-height: 4vw;
+    max-width: 4vw;
+    max-height: 4vw;
+}
+
+.mine-opened-6
+{   
+    font-size: 1.1em;
+    font-weight: bold; 
+    background-color: rgb(151, 168, 180);
+    color:rgb(27, 114, 92);
+    border-color: #2F3E48;
+    min-width: 4vw;
+    min-height: 4vw;
+    max-width: 4vw;
+    max-height: 4vw;
+}
+
+.mine-opened-7
+{   
+    font-size: 1.1em;
+    font-weight: bold; 
+    background-color: rgb(151, 168, 180);
+    color:rgb(0, 0, 0);
+    border-color: #2F3E48;
+    min-width: 4vw;
+    min-height: 4vw;
+    max-width: 4vw;
+    max-height: 4vw;
+}
+
+.mine-opened-8
+{   
+    font-size: 1.1em;
+    font-weight: bold; 
+    background-color: rgb(151, 168, 180);
+    color:rgb(102, 102, 102);
+    border-color: #2F3E48;
+    min-width: 4vw;
+    min-height: 4vw;
+    max-width: 4vw;
+    max-height: 4vw;
+}
+
+.mine-closed:hover, .mine-closed:active, .mine-closed.active {
+    background-color: rgb(71, 115, 143);
+    color:#FFF;
+    border-color: #31347B;
+    border-inline-end-color: rgb(94, 160, 77);
+    border-inline-end-width: 3px;
+    border-block-start-color: rgb(83, 134, 63);
+}
+
+[class|=mine-opened]:hover, [class|=mine-opened]:active, [class|=mine-opened].active {
+    background-color: rgb(143, 219, 255);
+    color:#FFF;
+    border-color: #31347B;
+    border-inline-end-color: rgb(160, 152, 77);
+    border-inline-end-width: 3px;
+    border-block-start-color: rgb(160, 152, 77);
+}
