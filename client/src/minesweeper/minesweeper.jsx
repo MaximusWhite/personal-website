@@ -154,9 +154,9 @@ class MineSweeper extends React.Component {
     }
 
     construct_grid() {
-        var grid = []
+        var grid = [];
         this.state.field.forEach((r) => {
-            var row = []
+            var row = [];
             r.forEach((cell) => {
                 row.push(<MineButton key={`button${cell.location[0]}:${cell.location[1]}`} value={cell.value} status={cell.status} location={cell.location} click_callback={this.check_click}/>);
             });
@@ -191,9 +191,9 @@ class MineSweeper extends React.Component {
     render() {
       return (
         <div>
-            <Container fluid style={{ fontSize: '2vw'}} className='center'>
+            <Container fluid style={{ fontSize: '2vw', marginLeft: '10%'}} className='center'>
                 <Col align='center'> 
-                <Row> <h1>Minesweeper</h1></Row>
+                <Row> <h1>Minesweeper (work in progress)</h1></Row>
                 {this.construct_grid()}
                 </Col>
             </Container>

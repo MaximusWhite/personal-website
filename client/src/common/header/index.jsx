@@ -22,8 +22,6 @@ const img_map = {
 
 class Header extends React.Component {
 
-    // static images_loaded = false;
-
     constructor(props) {
         super();
         console.log(bits);
@@ -31,50 +29,12 @@ class Header extends React.Component {
             img_loaded: false,
         }
     }
-    
-    // componentDidMount() {
-    //     const map = {};
-    //     if (!Header.images_loaded) {
-
-    //         console.log('inside');
-    //         ['main_page', 'about_me', 'bits', 'portfolio', 'resume', 'thoughts'].forEach((name) => {
-    //             const img = new Image();
-    //             img.src = require('./banners/' + name + '.png');
-    //             console.log(require('./banners/' + name + '.png'));
-    //             //img.onload = this.upd_img_loaded.bind(this);
-    //             map[name] = img.outerHTML;
-    //         });
-        
-    //         this.setState({
-    //             map: map,
-    //             img_loaded: true
-    //         });
-
-    //         Header.images_loaded = true;
-
-    //     }
-    // }
-
-    // shouldComponentUpdate(nextProps, nextState) {
-    //     console.log('next header state: ');
-    //     console.log(nextState);
-    //     return true;
-    // }
-
-    // upd_img_loaded() {
-    //     console.log('LOADED');
-    //     this.setState(
-    //         {
-    //             img_loaded: true
-    //         }
-    //     );
-    // }
 
     render() {
       return ( 
             <div>
 
-            <img src={img_map[this.props.banner]} width='100%' max-height='20%'   /> 
+            <img src={img_map[this.props.banner]} width='100%' max-height='20%' /> 
                 <div>
                     <Navbar bg="dark" variant="dark" expand="lg" sticky="top">
                     <LinkContainer to={'/'}>  
@@ -83,9 +43,9 @@ class Header extends React.Component {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
-                        <LinkContainer to={'/about_me'}>
+                        {/* <LinkContainer to={'/about_me'}>
                             <Nav.Link>About me</Nav.Link>
-                        </LinkContainer>
+                        </LinkContainer> */}
                         <LinkContainer to={'/resume'}>
                             <Nav.Link>Resume</Nav.Link>
                         </LinkContainer>
