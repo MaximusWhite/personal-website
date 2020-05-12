@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Jumbotron, Container, Col, Row} from 'react-bootstrap';
+import { Jumbotron, Container, Col, Row} from 'react-bootstrap';
 import './style.css';
 import Header from '../common/header';
 
@@ -12,9 +12,8 @@ class AboutMe extends React.Component {
     render() {
       return (
         <mp>   
-            <Image src={require('./img/banner.png')} width='100%' max-height='20%' className='img-responsive'/>
-            <Header />
-                <Jumbotron style={{'background-color': '#CDCDCD'}} fluid>
+            <Header banner='about_me' />
+                <Jumbotron style={{'backgroundColor': '#CDCDCD'}} fluid>
                         <Container >
                         <h1>About me</h1>
                         <h3>
