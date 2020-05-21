@@ -191,7 +191,7 @@ class MineSweeper extends React.Component {
     render() {
       return (
         <div>
-            <Container fluid style={{ fontSize: '2vw', marginLeft: '10%'}} className='center'>
+            <Container fluid style={{ fontSize: '2vw', marginLeft: '10%', marginBottom: '10%'}} className='center'>
                 <Col align='center'> 
                 <Row> <h1>Minesweeper (work in progress)</h1></Row>
                 {this.construct_grid()}

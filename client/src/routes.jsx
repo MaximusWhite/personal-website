@@ -6,6 +6,8 @@ import Resume from './resume/resume';
 import Portfolio from './portfolio/portfolio';
 import Thoughts from './thoughts/thoughts';
 import Bits from './bits/bits';
+import ResearchPage from './research_page/research_page';
+import SurveyPage from './survey_page';
 
 const routes = (
   <div>
@@ -15,6 +17,8 @@ const routes = (
     <Route path="/portfolio" component={Portfolio} />
     <Route path="/thoughts" component={Thoughts} />
     <Route path="/bits" component={Bits} />
+    <Route path="/research" component={ResearchPage} />
+    <Route path="/survey" component={SurveyPage} />
   </div>
 );
 

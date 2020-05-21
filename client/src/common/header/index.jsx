@@ -30,6 +30,12 @@ class Header extends React.Component {
         }
     }
 
+    logout() {
+        sessionStorage.removeItem('auth');
+        sessionStorage.removeItem('username');
+        sessionStorage.removeItem('first_name');
+    }
+
     render() {
       return ( 
             <div>
@@ -58,7 +64,16 @@ class Header extends React.Component {
                         <LinkContainer to={'/bits'}>
                             <Nav.Link>A bit of everything</Nav.Link>
                         </LinkContainer>
+                        <LinkContainer to={'/research'}>
+                            <Nav.Link>Research</Nav.Link>
+                        </LinkContainer>
                         </Nav>
+
+                        { sessionStorage.getItem('auth') == 'true' ?
+                                    <LinkContainer style={{ color: 'white' }} to={'/'}>
+                                        <Nav.Link className="right"  onSelect={this.logout}>Log out</Nav.Link>
+                                    </LinkContainer>
+                                    : '' }
                         <Nav.Link className="right">Work In Progress!</Nav.Link>
                     </Navbar.Collapse>
                     </Navbar>
