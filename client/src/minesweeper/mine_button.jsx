@@ -77,6 +77,7 @@ class MineButton extends React.Component {
             onContextMenu={(e) => {this.call(e);}} 
             onClick={(e) => {this.call(e)}} 
             bsPrefix={ this.get_style()} 
+            style={{ width: `${100 / this.props.grid_sizing}%` }}
             >
             {this.get_face()}
         </Button>

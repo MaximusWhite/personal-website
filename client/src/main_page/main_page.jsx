@@ -36,9 +36,9 @@ class MainPage extends React.Component {
                     <b>Contacts:</b>
                   </Col>
                 </Row>
-                <Row>
+                <Row >
                   <Col className={'text-center'}>
-                    <b>Email: </b><i>mkorchevskiy@ryerson.ca</i>
+                    <b>Email: </b><i style={{marginTop: '1%', fontSize: '2.1vmin' }}>mkorchevskiy@ryerson.ca</i>
                   </Col>
                 </Row>
                 <Row>
@@ -48,9 +48,9 @@ class MainPage extends React.Component {
                   </Col>
                 </Row>
               </Col>
-              <Col xs={8} sm={7} md={7} lg={7}> 
-                <h1>Welcome to my (somewhat) modest website!</h1>
-                <h4>Who am I?</h4>
+              <Col xs={8} sm={7} md={7} lg={6}> 
+                <h2>Welcome to my (somewhat) modest website!</h2>
+                <h3>Who am I?</h3>
                 <p className="indented">My name's Mikhail and I'm trying my best to make some sense out of this world in various ways. <br />
                 Professionaly, I am a Computer Scientist, currently working on my Master's degree specializing in Machine Learning, Deep Learning, Computer Vision. 
                 At the moment, I am invovled in a research related to Image Captioning. </p>
@@ -59,7 +59,7 @@ class MainPage extends React.Component {
                   I beleive in happiness in life being a product of both physical and intellectual excellence cultivated by oneself via the might of the human will. <br/>
                   Thus, over time, my interests have merged into a chimera of: <b><i>Philosophy, Science, Programming, Martial arts, Fitness, Music</i></b> and others. 
                 </p>
-                <h4>What is this place?</h4>
+                <h3>What is this place?</h3>
                 <p className="indented">
                   Where are you? This website is meant to be a platform for displaying/sharing both my professional and personal materials. 
                   My intention is to periodically use it to collect my thoughts and projects, which will inevitably touch upon all of the aforementioned interests of mine. <br />
@@ -72,7 +72,7 @@ class MainPage extends React.Component {
                   It is hosted on <b>AWS EC2</b> instance and the app itself is built with <b>Express.js</b> back-end and <b>React</b> front-end (with <b>Bootstrap</b>). 
                   There will also be a <b>PostgreSQL</b> database, that will contain all the posts displayed here as well as the data for a research-related project.
                 </p>
-                <h4>What now?</h4>
+                <h3>What now?</h3>
                 <p className="indented">
                   I don't know, you came here yourself! You can check out the Minesweeper I made, though:
                 </p>
@@ -84,7 +84,6 @@ class MainPage extends React.Component {
               </Col>
             </Row>
           </Container>
-          {/* <MineSweeper height={10} width={20} mines={20} /> */}
         </div>
       );
     }
