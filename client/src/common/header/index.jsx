@@ -34,6 +34,7 @@ class Header extends React.Component {
         sessionStorage.removeItem('auth');
         sessionStorage.removeItem('username');
         sessionStorage.removeItem('first_name');
+        sessionStorage.removeItem('token');
     }
 
     render() {

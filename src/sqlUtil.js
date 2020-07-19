@@ -29,7 +29,18 @@ const getTesting = () =>
 
 const getUserInfo = (username, password) =>
   new Promise((resolve, reject) => {
-    query(`SELECT first_name, last_name, role FROM data.users WHERE username = '${username}' AND password = '${password}';`, null, (err, res) => {
+    query(`SELECT first_name, last_name, role, salt FROM data.users WHERE username = '${username}' AND password = '${password}';`, null, (err, res) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(res.rows);
+      }
+    });
+  });
+
+const getVerificationInfo = (username, first_name) => 
+  new Promise((resolve, reject) => {
+    query(`SELECT role, salt FROM data.users WHERE username = '${username}' AND first_name = '${first_name}';`, null, (err, res) => {
       if (err) {
         reject(err);
       } else {
@@ -81,3 +92,4 @@ exports.getUserInfo = getUserInfo;
 exports.fetchCaption = fetchCaption;
 exports.addNewRequest = addNewRequest;
 exports.recordResponse = recordResponse;
+exports.getVerificationInfo = getVerificationInfo;

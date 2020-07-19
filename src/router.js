@@ -5,8 +5,11 @@ const {
     getUserInfo,
     fetchCaption,
     addNewRequest,
-    recordResponse
+    recordResponse,
+    getVerificationInfo
 } = require('./sqlUtil');
+
+const crypto = require('crypto');
 
 router.get('/test', async (req, res) => {
     result = await getTesting();
@@ -16,8 +19,26 @@ router.get('/test', async (req, res) => {
 });
 
 router.post('/draw_caption', async (req, res) => {
-    result = await fetchCaption(req.body.username);
-    res.json(result[0]);
+    username = req.body.username;
+    first_name = req.body.first_name;
+    result = await fetchCaption(username);
+    verification = await getVerificationInfo(username, first_name);
+    console.log(`COMPARING TO: ${first_name + verification[0].role + username + verification[0].salt}`);
+    at = crypto.createHash('md5').update(first_name + verification[0].role + username + verification[0].salt).digest('hex');
+    if (at == req.body.token) {
+        res.json({
+            status: "OK",
+            caption_id: result[0].caption_id,
+            caption: result[0].caption,
+            image_id: result[0].image_id,
+            image_link: result[0].link
+        }); 
+    } else {
+        res.json({
+            status: "TOKEN MISMATCH"
+        });
+    }
+
 });
 
 router.post('/register_response', async (req, res) => {
@@ -54,16 +75,22 @@ router.post('/login', async (req, res) => {
     result = await getUserInfo(username, password);
     status = 'rejected';
     role = null;
+    token = null;
+    salt = null;
     first_name = null;
     if (result.length > 0) {
         status = 'granted';
         role = result[0].role;
         first_name = result[0].first_name;
+        salt = result[0].salt;
+        token = crypto.createHash('md5').update(first_name + role + username + salt).digest('hex');
+        console.log(`CREATING WITH: ${first_name + role + username + salt}`);
     }
     res.json({
         status,
         first_name,
-        role
+        role,
+        token
     });
  });
 

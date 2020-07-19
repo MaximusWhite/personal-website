@@ -12,6 +12,7 @@ class MainSurveyComponent extends React.Component {
         this.state = {
             username: sessionStorage.getItem('username'),
             first_name: sessionStorage.getItem('first_name'),
+            token: sessionStorage.getItem('token'),
             caption_id: -1,
             image_id: -1,
             caption: 'NULL',
@@ -50,15 +51,22 @@ class MainSurveyComponent extends React.Component {
 
     async requestCaption() {
         await axios.post('/api/draw_caption', {
-            username: this.state.username
+            username: this.state.username,
+            first_name: this.state.first_name,
+            token: this.state.token
         }).then(res => {
-            this.setState({
-                caption_received: true,
-                caption_id: res.data.caption_id,
-                caption: res.data.caption,
-                image_id: res.data.image_id,
-                image_link: res.data.link
-            });
+            console.log(res.data);
+            if (res.data.status == 'OK') {
+                this.setState({
+                    caption_received: true,
+                    caption_id: res.data.caption_id,
+                    caption: res.data.caption,
+                    image_id: res.data.image_id,
+                    image_link: res.data.link
+                });
+            } else {
+                console.log("INVALID ACCESS TOKEN");
+            }
         }).catch(err => {
             console.log(err.message);
         });
@@ -91,6 +99,8 @@ class MainSurveyComponent extends React.Component {
 
         await axios.post('/api/register_response', {
             username: this.state.username,
+            first_name: this.state.first_name,
+            token: this.state.token,
             caption_id: this.state.caption_id,
             image_id: this.state.image_id,
             caption_score: score

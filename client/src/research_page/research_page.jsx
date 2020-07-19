@@ -84,6 +84,7 @@ class ResearchPage extends React.Component {
               username,
               first_name: res.data.first_name,
               role: res.data.role,
+              token: res.data.token,
               logged_in: true
             }
           })
