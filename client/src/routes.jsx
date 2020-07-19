@@ -8,6 +8,7 @@ import Thoughts from './thoughts/thoughts';
 import Bits from './bits/bits';
 import ResearchPage from './research_page/research_page';
 import SurveyPage from './survey_page';
+import AdminHub from './admin_page';
 
 const routes = (
   <div>
@@ -19,6 +20,7 @@ const routes = (
     <Route path="/bits" component={Bits} />
     <Route path="/research" component={ResearchPage} />
     <Route path="/survey" component={SurveyPage} />
+    <Route path="/admin" component={AdminHub} />
   </div>
 );
 

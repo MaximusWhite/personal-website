@@ -35,6 +35,7 @@ class Header extends React.Component {
         sessionStorage.removeItem('username');
         sessionStorage.removeItem('first_name');
         sessionStorage.removeItem('token');
+        sessionStorage.removeItem('role');
     }
 
     render() {
@@ -68,6 +69,11 @@ class Header extends React.Component {
                         <LinkContainer to={'/research'}>
                             <Nav.Link>Research</Nav.Link>
                         </LinkContainer>
+                        { sessionStorage.getItem('auth') == 'true' && sessionStorage.getItem('role') == 'admin' ?
+                                    <LinkContainer to={'/admin'}>
+                                        <Nav.Link>Admin hub</Nav.Link>
+                                    </LinkContainer>
+                                    : '' }
                         </Nav>
 
                         { sessionStorage.getItem('auth') == 'true' ?

@@ -18,6 +18,7 @@ class SurveyPage extends React.Component {
         sessionStorage.setItem('username', props.location.state.username);
         sessionStorage.setItem('first_name', props.location.state.first_name);
         sessionStorage.setItem('token', props.location.state.token);
+        sessionStorage.setItem('role', props.location.state.role);
         console.log('Logged in directly');
       } else if (sessionStorage.getItem('auth') == 'true'){
         this.state = {
