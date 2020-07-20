@@ -248,7 +248,9 @@ class ResearchPage extends React.Component {
     render() {
       return (
         <div> 
-          <Header banner={'main_page'} />
+          <mp>
+           <Header banner={'main_page'} />
+          </mp>
           { sessionStorage.getItem('auth') == 'true' ? this.loggedIn() : this.nonLogged()}
         </div>
       );

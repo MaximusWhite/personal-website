@@ -23,7 +23,6 @@ router.post('/draw_caption', async (req, res) => {
     first_name = req.body.first_name;
     result = await fetchCaption(username);
     verification = await getVerificationInfo(username, first_name);
-    console.log(`COMPARING TO: ${first_name + verification[0].role + username + verification[0].salt}`);
     at = crypto.createHash('md5').update(first_name + verification[0].role + username + verification[0].salt).digest('hex');
     if (at == req.body.token) {
         res.json({
@@ -31,7 +30,7 @@ router.post('/draw_caption', async (req, res) => {
             caption_id: result[0].caption_id,
             caption: result[0].caption,
             image_id: result[0].image_id,
-            image_link: result[0].link
+            link: result[0].link
         }); 
     } else {
         res.json({
@@ -84,7 +83,6 @@ router.post('/login', async (req, res) => {
         first_name = result[0].first_name;
         salt = result[0].salt;
         token = crypto.createHash('md5').update(first_name + role + username + salt).digest('hex');
-        console.log(`CREATING WITH: ${first_name + role + username + salt}`);
     }
     res.json({
         status,
