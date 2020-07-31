@@ -76,9 +76,9 @@ const getVerificationInfo = (username, first_name) =>
     });
   });
 
-  const recordResponse = (username, caption_id, image_id, caption_score) =>
+  const recordResponse = (username, caption_id, image_id, content_score, layout_score) =>
   new Promise((resolve, reject) => {
-    query(`INSERT INTO data.responses VALUES ('${username}', DEFAULT, ${caption_id}, ${image_id}, ${caption_score});`, null, (err, res) => {
+    query(`INSERT INTO data.responses VALUES ('${username}', DEFAULT, ${caption_id}, ${image_id}, ${content_score}, ${layout_score});`, null, (err, res) => {
       if (err) {
         reject(err);
       } else {

@@ -20,7 +20,7 @@
     "setup": "cd ./client && yarn install && cd .. && yarn install",
     "dev": "nodemon src/index.js",
     "prod": "pm2 start website.config.js",
-    "build-prod": "cd ./client && yarn run build && cp ./build ../dist/ -r && cd .. && cp ./src/ ./dist/ -r",
+    "build-prod": "cd ./client && yarn run build && cp -R ./build ../dist/  && cd .. && cp -R ./src ./dist/",
     "prep-package": "cp ./package.json ./dist/ && cp ./website.config.js ./dist/"
   }
 }

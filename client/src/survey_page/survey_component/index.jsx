@@ -20,6 +20,8 @@ class MainSurveyComponent extends React.Component {
             image_loading: false,
             image_loaded: false,
             caption_received: false,
+            context_response_ready: false,
+            layout_response_ready: false,
             ready_to_submit: false,
             response_submitting: false
         }
@@ -55,7 +57,6 @@ class MainSurveyComponent extends React.Component {
             first_name: this.state.first_name,
             token: this.state.token
         }).then(res => {
-            console.log(res.data);
             if (res.data.status == 'OK') {
                 this.setState({
                     caption_received: true,
@@ -86,10 +87,17 @@ class MainSurveyComponent extends React.Component {
 
     async sendEvaluation(e) {
         e.preventDefault();
-        let score = -1;
+        let content_score = -1;
+        let layout_score = -1;
         for(let i = 1; i < 11; i++) {
-            if (document.getElementById(`resp${i}`).checked == true) {
-                score = i;
+            if (document.getElementById(`resp_content${i}`).checked == true) {
+                content_score = i;
+            }
+        }
+
+        for(let i = 1; i < 11; i++) {
+            if (document.getElementById(`resp_layout${i}`).checked == true) {
+                layout_score = i;
             }
         }
 
@@ -103,13 +111,14 @@ class MainSurveyComponent extends React.Component {
             token: this.state.token,
             caption_id: this.state.caption_id,
             image_id: this.state.image_id,
-            caption_score: score
+            content_score: content_score,
+            layout_score: layout_score
         }).then(res => {
             if (res.data.status == 'OK') {
                 this.resetPage();
                 this.requestCaption();
             } else {
-                console.log('ERROR SUBMITTING RESPONSE');
+                console.log(`ERROR SUBMITTING RESPONSE: \n${res.data.detail}`);
             }
             
         }).catch(err => {
@@ -118,9 +127,26 @@ class MainSurveyComponent extends React.Component {
     }
 
     revealSubmit() {
-        this.setState({
-            ready_to_submit: true
-        });
+        let context_checked = false;
+        let layout_checked = false;
+
+        for(let i = 1; i < 11; i++) {
+            if (document.getElementById(`resp_content${i}`).checked == true) {
+                context_checked = true;
+            }
+        }
+
+        for(let i = 1; i < 11; i++) {
+            if (document.getElementById(`resp_layout${i}`).checked == true) {
+                layout_checked = true;
+            }
+        }
+
+        if (context_checked && layout_checked){
+            this.setState({
+                ready_to_submit: true
+            });
+        }
     }
 
     evaluationPanel() {
@@ -128,19 +154,43 @@ class MainSurveyComponent extends React.Component {
             <div>
             <Row className="text-center my-3">
                 <Col>
-                    Please, evaluate how close is the original image to what you imagined after reading the caption:
+                    Please, evaluate how close the original image is to what you imagined after reading the caption in terms of:
                 </Col>
             </Row>
+            {/* CONTEXT */}
             <Row className="text-center my-3">
                 <Col>
                     <Form onSubmit={this.sendEvaluation}>
-                        <Form.Group onChange={this.revealSubmit}>
+                        <Form.Label>Content :</Form.Label>
+                        <Form.Group onClick={this.revealSubmit}>
                             {
                                 (() => {
                                     let tmp = [];
                                     for (let i = 1; i < 11; i++) {
                                         tmp.push(
-                                            <Form.Check inline label={`${i}`} key={`radio-${i}`}  name="eval" type='radio' id={`resp${i}`} />
+                                            <Form.Check inline label={`${i}`} key={`radio-context-${i}`}  name="eval" type='radio' id={`resp_content${i}`} />
+                                        );
+                                    }
+                                    return tmp;
+                                })()
+                            }
+                        </Form.Group>
+                    </Form>
+                </Col>
+            </Row>
+
+            {/* LAYOUT */}
+            <Row className="text-center my-3">
+                <Col>
+                    <Form onSubmit={this.sendEvaluation}>
+                    <Form.Label>Layout:</Form.Label>
+                        <Form.Group onClick={this.revealSubmit}>
+                            {
+                                (() => {
+                                    let tmp = [];
+                                    for (let i = 1; i < 11; i++) {
+                                        tmp.push(
+                                            <Form.Check inline label={`${i}`} key={`radio-layout-${i}`}  name="eval" type='radio' id={`resp_layout${i}`} />
                                         );
                                     }
                                     return tmp;
@@ -155,7 +205,6 @@ class MainSurveyComponent extends React.Component {
                     </Form>
                 </Col>
             </Row>
-            
             </div>
         );
     }

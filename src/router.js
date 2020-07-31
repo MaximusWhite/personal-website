@@ -42,14 +42,14 @@ router.post('/draw_caption', async (req, res) => {
 
 router.post('/register_response', async (req, res) => {
     try {
-        result = await recordResponse(req.body.username, req.body.caption_id, req.body.image_id, req.body.caption_score);
+        result = await recordResponse(req.body.username, req.body.caption_id, req.body.image_id, req.body.content_score, req.body.layout_score);
         res.json({
             status: 'OK'
         });
     } catch(err) {
         res.json({
             status: 'ERR',
-            detail: err.detail
+            detail: err
         });
    }
 });

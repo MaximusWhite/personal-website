@@ -5,3 +5,6 @@ build/
 dist/
 *.sct
 .env
+deploy.sh
+.DS_Store
+.DS_Store/
