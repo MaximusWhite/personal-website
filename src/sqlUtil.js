@@ -52,11 +52,20 @@ const getVerificationInfo = (username, first_name) =>
   // Fetching a caption for user depending on whether that caption was evaluated or not
   const fetchCaption = (username) =>
     new Promise((resolve, reject) => {
-      query(`WITH tmp AS (SELECT captions_data.id as caption_id, image_data.id as image_id, image_data.coco_url as link, captions_data.caption
-            FROM data.image_data inner join data.captions_data ON image_data.id = captions_data.image_id)
+      query(`WITH tmp AS (SELECT image_id, coco_url AS link, res.id AS caption_id, caption 
+            FROM data.image_data INNER JOIN data.captions_data AS res
+            ON image_data.id = res.image_id
+            ORDER BY image_id
+            OFFSET 250 * (SELECT batch_number FROM 
+                    data.user_batch INNER JOIN data.users ON user_batch.user_id = users.id
+                    WHERE users.username = '${username}')
+            LIMIT 250), 
+            tmp2 AS (
             SELECT * FROM tmp 
             WHERE tmp.caption_id NOT IN (SELECT responses.caption_id FROM data.responses WHERE responses.username = '${username}')
-            OFFSET floor(random() * (SELECT COUNT(*) FROM tmp)) LIMIT 1;`, null, (err, res) => {
+            )
+            SELECT * FROM tmp2
+            OFFSET floor(random() * (SELECT COUNT(*) FROM tmp2)) LIMIT 1;`, null, (err, res) => {
         if (err) {
           reject(err);
         } else {
@@ -87,9 +96,27 @@ const getVerificationInfo = (username, first_name) =>
     });
   });
 
+  const shiftBatch = (username) =>
+  new Promise((resolve, reject) => {
+    query(`UPDATE data.user_batch SET batch_number = ((select batch_number 
+        FROM data.user_batch INNER JOIN data.users ON user_batch.user_id = users.id
+        WHERE username = '${username}'
+      ) + 1)
+        WHERE user_id = (SELECT user_id 
+        FROM data.user_batch INNER JOIN data.users ON user_batch.user_id = users.id
+        WHERE username = '${username}');`, null, (err, res) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(res);
+      }
+    });
+  });
+
 exports.getTesting = getTesting;
 exports.getUserInfo = getUserInfo;
 exports.fetchCaption = fetchCaption;
 exports.addNewRequest = addNewRequest;
 exports.recordResponse = recordResponse;
 exports.getVerificationInfo = getVerificationInfo;
+exports.shiftBatch = shiftBatch;

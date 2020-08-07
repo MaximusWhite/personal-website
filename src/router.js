@@ -6,7 +6,8 @@ const {
     fetchCaption,
     addNewRequest,
     recordResponse,
-    getVerificationInfo
+    getVerificationInfo,
+    shiftBatch
 } = require('./sqlUtil');
 
 const crypto = require('crypto');
@@ -25,13 +26,25 @@ router.post('/draw_caption', async (req, res) => {
     verification = await getVerificationInfo(username, first_name);
     at = crypto.createHash('md5').update(first_name + verification[0].role + username + verification[0].salt).digest('hex');
     if (at == req.body.token) {
-        res.json({
-            status: "OK",
-            caption_id: result[0].caption_id,
-            caption: result[0].caption,
-            image_id: result[0].image_id,
-            link: result[0].link
-        }); 
+        if (result[0] != undefined) {
+            res.json({
+                status: "OK",
+                caption_id: result[0].caption_id,
+                caption: result[0].caption,
+                image_id: result[0].image_id,
+                link: result[0].link
+            }); 
+        } else {
+            await shiftBatch(username);
+            result = await fetchCaption(username);
+            res.json({
+                status: "OK",
+                caption_id: result[0].caption_id,
+                caption: result[0].caption,
+                image_id: result[0].image_id,
+                link: result[0].link
+            }); 
+        }
     } else {
         res.json({
             status: "TOKEN MISMATCH"

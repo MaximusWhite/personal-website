@@ -158,7 +158,13 @@ class MineSweeper extends React.Component {
         this.state.field.forEach((r) => {
             var row = [];
             r.forEach((cell) => {
-                row.push(<MineButton key={`button${cell.location[0]}:${cell.location[1]}`} value={cell.value} status={cell.status} location={cell.location} click_callback={this.check_click}/>);
+                row.push(<MineButton 
+                    key={`button${cell.location[0]}:${cell.location[1]}`} 
+                    value={cell.value} status={cell.status} 
+                    location={cell.location} 
+                    click_callback={this.check_click}
+                    grid_sizing={this.state.width}
+                    />);
             });
             grid.push(<Row  key={`row${r[0].location[0]}`}>
                 {row}
@@ -193,7 +199,7 @@ class MineSweeper extends React.Component {
         <div>
             <Container fluid style={{ fontSize: '2vw', paddingLeft: '10%', marginBottom: '10%'}} className='center'>
                 <Col align='center'> 
-                    <Row> <h1>Minesweeper (work in progress)</h1></Row>
+                    <Row fluid> <h1>Minesweeper (work in progress)</h1></Row>
                     {this.construct_grid()}
                 </Col>
             </Container>
