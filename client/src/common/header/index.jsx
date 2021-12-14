@@ -3,12 +3,14 @@ import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import about_me from './banners/about_me.png';
 import portfolio from './banners/portfolio.png';
 import resume from './banners/resume.png';
 import thoughts from './banners/thoughts.png';
 import main_page from './banners/main_page.png';
 import bits from './banners/bits.png';
+import { FileEarmarkArrowDown, Download } from 'react-bootstrap-icons';
 
 
 const img_map = {
@@ -24,10 +26,26 @@ class Header extends React.Component {
 
     constructor(props) {
         super();
-        console.log(bits);
+        // console.log(bits);
+        this.downloadResume = this.downloadResume.bind(this);
         this.state = {
             img_loaded: false,
         }
+    }
+
+    downloadResume(){
+        axios.get('/api/download_resume', {
+          responseType: 'blob'
+        }).then(res => 
+          {
+            console.log(res)
+            const url = window.URL.createObjectURL(new Blob([res.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'Mikhail Korchevskiy_resume.pdf'); //or any other extension
+            document.body.appendChild(link);
+            link.click();
+          }).catch(err => {console.log(err.message)});
     }
 
     logout() {
@@ -54,15 +72,18 @@ class Header extends React.Component {
                         {/* <LinkContainer to={'/about_me'}>
                             <Nav.Link>About me</Nav.Link>
                         </LinkContainer> */}
-                        <LinkContainer to={'/resume'}>
+                        {/* <LinkContainer to={'/resume'}>
                             <Nav.Link>Resume</Nav.Link>
-                        </LinkContainer>
-                        <LinkContainer to={'/portfolio'}>
+                        </LinkContainer> */}
+                        {/* <LinkContainer> */}
+                        <Nav.Link onClick={this.downloadResume}>Resume &nbsp;<Download size={20}/></Nav.Link>
+                        {/* </LinkContainer> */}
+                        {/* <LinkContainer to={'/portfolio'}>
                             <Nav.Link>Portfolio</Nav.Link>
-                        </LinkContainer>
-                        <LinkContainer to={'/thoughts'}>
+                        </LinkContainer> */}
+                        {/* <LinkContainer to={'/thoughts'}>
                             <Nav.Link>Thoughts</Nav.Link>
-                        </LinkContainer>
+                        </LinkContainer> */}
                         <LinkContainer to={'/bits'}>
                             <Nav.Link>A bit of everything</Nav.Link>
                         </LinkContainer>

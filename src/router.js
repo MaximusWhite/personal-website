@@ -103,6 +103,10 @@ router.post('/login', async (req, res) => {
         role,
         token
     });
- });
+});
 
+router.get('/download_resume', async (req, res) => {
+    const file = `${__dirname}/resume.pdf`;
+    res.download(file); // Set disposition and send it.
+ });
 module.exports = router;

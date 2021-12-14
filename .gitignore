@@ -4,6 +4,7 @@ keys/
 build/
 dist/
 *.sct
+*.pdf
 .env
 deploy.sh
 .DS_Store
