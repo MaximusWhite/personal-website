@@ -10,7 +10,16 @@ const {
     shiftBatch
 } = require('./sqlUtil');
 
+require('dotenv').config();
+
 const crypto = require('crypto');
+const fs = require('fs');
+const https = require('https');
+const aziox = require('axios');
+const Promise = require('promise');
+const { request } = require('http');
+const { required } = require('nodemon/lib/config');
+const { default: axios } = require('axios');
 
 router.get('/test', async (req, res) => {
     result = await getTesting();
@@ -106,7 +115,15 @@ router.post('/login', async (req, res) => {
 });
 
 router.get('/download_resume', async (req, res) => {
-    const file = `${__dirname}/resume.pdf`;
-    res.download(file); // Set disposition and send it.
- });
+    const resume = fs.createWriteStream(`${__dirname}/resume.pdf`);
+    const resp = await axios.get(process.env.S3_RESUME_URL, { responseType: 'stream'});
+    resp.data.pipe(resume);
+    new Promise((resolve, reject) => {
+        resume.on('finish', resolve)
+        resume.on('error', reject)
+    }).then(_ => {
+        res.download(`${__dirname}/resume.pdf`);
+    }).catch(e => { console.log(e);});
+
+});
 module.exports = router;

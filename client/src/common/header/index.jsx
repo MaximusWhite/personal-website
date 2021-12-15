@@ -35,7 +35,8 @@ class Header extends React.Component {
 
     downloadResume(){
         axios.get('/api/download_resume', {
-          responseType: 'blob'
+          responseType: 'blob',
+          headers: this.headers
         }).then(res => 
           {
             console.log(res)
